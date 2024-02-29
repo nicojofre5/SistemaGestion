@@ -3,7 +3,7 @@
 namespace APISistemaGestion.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ProductoController : Controller
     {
         

@@ -11,6 +11,33 @@ namespace SistemaGestionBussiness
 {
     public static class UsuarioService
     {
+        public static Usuario ObtenerUsuario(int ID)
+        {
+            using (SqlConnection connection = new SqlConnection(UsuarioData.ConnectionString))
+            {
+                string query = "SELECT * FROM Usuario where id = @id";
+                SqlCommand comando = new SqlCommand(query, connection);
+                comando.Parameters.AddWithValue("id", ID);
+                connection.Open();
+
+                SqlDataReader reader = comando.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int idObtenido = Convert.ToInt32(reader["id"]);
+                    string nombre = reader.GetString(1);
+                    string apellido = reader.GetString(2);
+                    string nombreUsuario = reader.GetString(3);
+                    string password = reader.GetString(4);
+                    string email = reader.GetString(5);
+                    Usuario usuario = new Usuario();
+                    return usuario;
+                }
+                throw new Exception("Id no encontrado");
+
+            }
+        }
+
         public static bool CrearUsuario(Usuario usuario)
         {
             using (SqlConnection connection = new SqlConnection(UsuarioData.ConnectionString))
