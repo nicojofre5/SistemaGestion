@@ -2,11 +2,10 @@
 
 namespace APISistemaGestion.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class ProductoController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
     }
 }

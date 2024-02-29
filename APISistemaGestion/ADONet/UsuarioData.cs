@@ -10,6 +10,7 @@ namespace SistemaGestionData
         {
             UsuarioData.connectionString = "Server= localhost\\sqlexpress ; Database=coderhouseBD;Trusted_Connection=true";
         }
+        public static string ConnectionString { get { return connectionString; } }
         public static List<Usuario> ListarUsuarios()
         {
             List<Usuario> listadoDeUsuarios = new List<Usuario>();
@@ -63,49 +64,6 @@ namespace SistemaGestionData
 
             }
         }
-        public static bool CrearUsuario(Usuario usuario)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "INSERT INTO Usuario (Nombre,Apellido,NombreUsuario,Contraseña,Mail) VALUES (@nombre,@apellido,@nombreUsuario,@password,@email)";
-
-                SqlCommand comando = new SqlCommand(query, connection);
-                comando.Parameters.AddWithValue("nombre", usuario.nombre);
-                comando.Parameters.AddWithValue("apellido", usuario.apellido);
-                comando.Parameters.AddWithValue("nombreUsuario", usuario.nombreusuario);
-                comando.Parameters.AddWithValue("password", usuario.contrasena);
-                comando.Parameters.AddWithValue("email", usuario.email);
-                connection.Open();
-                return comando.ExecuteNonQuery() > 0;
-            }
-        }
-        public static bool ModificarUsuario(int id, Usuario usuario)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "UPDATE Usuario SET Nombre = @nombre, Apellido = @apellido , NombreUsuario = @nombreUsuario , Contraseña = @password, Mail = @email WHERE id = @id";
-                SqlCommand comando = new SqlCommand(query, connection);
-                comando.Parameters.AddWithValue("id", id);
-                comando.Parameters.AddWithValue("nombre", usuario.nombre);
-                comando.Parameters.AddWithValue("apellido", usuario.apellido);
-                comando.Parameters.AddWithValue("nombreUsuario", usuario.nombreusuario);
-                comando.Parameters.AddWithValue("password", usuario.contrasena);
-                comando.Parameters.AddWithValue("email", usuario.email);
-                connection.Open();
-                return comando.ExecuteNonQuery() > 0;
-
-            }
-        }
-        public static bool EliminarUsuario(int id, Usuario usuario)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "DELETE FROM Usuario WHERE id = @id";
-                SqlCommand comando = new SqlCommand(query, connection);
-                comando.Parameters.AddWithValue("id", id);
-                connection.Open();
-                return comando.ExecuteNonQuery() > 0;
-            }
-        }
+       
     }
 }

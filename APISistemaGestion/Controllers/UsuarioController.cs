@@ -6,9 +6,7 @@ namespace APISistemaGestion.Controllers
     [Route("[controller]")]
     public class UsuarioController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        [HttpGet]
+
     }
 }
