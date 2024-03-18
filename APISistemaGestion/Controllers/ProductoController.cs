@@ -10,7 +10,7 @@ namespace APISistemaGestion.Controllers
     {
         [HttpGet]
 
-        public ActionResult<List<Producto>> GetUsuarios()
+        public ActionResult<List<Producto>> GetProductos()
         {
             return ProductoService.ListarProductos();
         }
